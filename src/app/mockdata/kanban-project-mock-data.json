@@ -1,0 +1,45 @@
+{
+  "title": "Kanban Project",
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "role": "Developer"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "role": "Project Manager"
+    }
+  ],
+  "swimlanes": [
+    {
+      "id": 1,
+      "name": "To Do"
+    },
+    {
+      "id": 2,
+      "name": "In Progress"
+    },
+    {
+      "id": 3,
+      "name": "Done"
+    }
+  ],
+  "features": [
+    {
+      "id": 1,
+      "title": "User Authentication",
+      "description": "Implement user login and registration",
+      "status": "To Do",
+      "assignedTo": 1
+    },
+    {
+      "id": 2,
+      "title": "Dashboard",
+      "description": "Create a dashboard for users",
+      "status": "In Progress",
+      "assignedTo": 2
+    }
+  ]
+}
