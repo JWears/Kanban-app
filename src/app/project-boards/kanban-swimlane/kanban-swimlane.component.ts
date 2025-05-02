@@ -11,6 +11,6 @@ import { CommonModule } from '@angular/common';
 })
 export class KanbanSwimlaneComponent {
 
-  storyTicketList: KanbanStoryTicketComponent[] = [];
+  storyTicketList: KanbanStoryTicketComponent[] = [ new KanbanStoryTicketComponent(), new KanbanStoryTicketComponent(), new KanbanStoryTicketComponent() ];
 
 }

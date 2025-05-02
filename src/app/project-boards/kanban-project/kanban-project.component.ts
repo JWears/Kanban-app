@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TabComponent } from '../project-types/tab-component.type';
 import { CommonModule } from '@angular/common';
+import { KanbanBoardComponent } from '../kanban-board/kanban-board.component';
 
 @Component({
   selector: 'app-kanban-project',
@@ -10,7 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './kanban-project.component.less'
 })
 export class KanbanProjectComponent {
-  tabList: TabComponent[] = [];
+  tabList: TabComponent[] = [ new KanbanBoardComponent(), new KanbanBoardComponent(), new KanbanBoardComponent() ];
 
   changeTab(tabComponent: TabComponent) {
 

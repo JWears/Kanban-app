@@ -9,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class CreateProjectComponent {
 
+  createProject(){
+    // create project logic
+    // what info to create a project?
+    // userId,
+    // project details,
+    // unique project Id,
+    //
+  }
 }

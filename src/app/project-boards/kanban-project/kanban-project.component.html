@@ -3,8 +3,8 @@
     <h1>Project Title</h1>
   </div>
   <div class="project-tabs">
-    <div class="project-tab" *ngFor="let tab of tabList" (click)="changeTab(tab)">
-
+    <div class="project-tab" *ngFor="let tab of tabList; let i = index" (click)="changeTab(tab)">
+      <h2>{{ tab.id }} {{ i }}</h2>
     </div>
   </div>
 </div>

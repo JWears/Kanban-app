@@ -1,3 +1,5 @@
 <div class="kanban-board-container">
-  <app-kanban-swimlane **ngFor="let swimlane of swimlaneList"></app-kanban-swimlane>
+  <div class="board-columns">
+    <app-kanban-swimlane *ngFor="let swimlane of swimlaneList"></app-kanban-swimlane>
+  </div>
 </div>
