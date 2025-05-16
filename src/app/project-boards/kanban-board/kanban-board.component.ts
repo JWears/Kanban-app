@@ -11,12 +11,20 @@ import { CommonModule } from '@angular/common';
   styleUrl: './kanban-board.component.less'
 })
 export class KanbanBoardComponent implements TabComponent {
+  showTab: boolean = false;
   id: string = 'kanban-board';
   name: string = 'Kanban Board';
   icon: string = 'icon-kanban-board';
   component: any = KanbanBoardComponent;
   isActive: boolean = false;
   isDisabled: boolean = false;
-  onClick?: (() => void) | undefined;
   swimlaneList: KanbanSwimlaneComponent[] = [ new KanbanSwimlaneComponent(), new KanbanSwimlaneComponent(), new KanbanSwimlaneComponent() ];
+
+  public onClick(): void{
+    // call data for board to load
+      // what information would be provided? id, board name, list of swimlanes? list of tickets? // list of board users
+    // change url
+    // cache data to prevent calls
+  };
+
 }

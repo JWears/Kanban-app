@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-kanban-story-ticket',
@@ -9,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class KanbanStoryTicketComponent {
 
+  public readonly ticketId: number = 0;
+  public ticketTitle: string = "";
+  public ticketDescription: string = "";
+  public storyPoint: number = 0;
+  @Input() swimlaneId: number = 0;
+  @Input() ticketComponent: KanbanStoryTicketComponent | null = null;
 }

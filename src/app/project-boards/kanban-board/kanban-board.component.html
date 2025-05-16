@@ -1,5 +1,10 @@
-<div class="kanban-board-container">
+<div *ngIf="showTab else kanbanBoardButton" class="kanban-board-container">
   <div class="board-columns">
-    <app-kanban-swimlane *ngFor="let swimlane of swimlaneList"></app-kanban-swimlane>
+    <app-kanban-swimlane *ngFor="let swimlane of swimlaneList" [storyTicketList]="[]"></app-kanban-swimlane>
   </div>
 </div>
+
+<ng-template #kanbanBoardButton>
+  <button (click)="onClick()">Kanban board</button>
+  <p> {{icon}}</p>
+</ng-template>

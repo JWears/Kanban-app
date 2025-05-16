@@ -1,6 +1,7 @@
 <div class="ticket-container">
-  <input type="text" name="ticket-title" id="" placeholder="Enter ticket title">
-  <input type="text" name="ticket-description" id="" placeholder="Enter ticket description">
-  <input type="number" name="ticket-points" id="" placeholder="Enter ticket points">
-  <!-- use llm to generate tickets? -->
+  <input type="text" name="ticket-title" [placeholder]="ticketComponent?.ticketTitle ?? `Enter your title`">
+  <input type="text" name="ticket-description" [placeholder]="ticketComponent?.ticketDescription ?? `Enter your description` ">
+  <input type="number" name="ticket-points" [placeholder]="ticketComponent?.storyPoint ?? `Enter your story points`">
+  <!-- use llm to generate tickets? use epics / features to establish a context for each feature this can be pre written for each
+   feature by a SME. could attach assoicated repos to investigative work and have LLM look at this to generate spikes etc. -->
 </div>
