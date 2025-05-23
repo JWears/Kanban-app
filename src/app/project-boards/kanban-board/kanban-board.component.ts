@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { TabComponent } from '../project-types/tab-component.type';
 import { CommonModule } from '@angular/common';
 import { KanbanSwimlaneComponent } from './kanban-swimlane/kanban-swimlane.component';
-
 @Component({
   selector: 'app-kanban-board',
   standalone: true,
@@ -11,6 +10,8 @@ import { KanbanSwimlaneComponent } from './kanban-swimlane/kanban-swimlane.compo
   styleUrl: './kanban-board.component.less'
 })
 export class KanbanBoardComponent implements TabComponent {
+  constructor() {
+  }
   showTab: boolean = false;
   id: string = 'kanban-board';
   name: string = 'Kanban Board';

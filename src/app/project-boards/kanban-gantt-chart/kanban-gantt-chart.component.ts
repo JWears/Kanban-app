@@ -13,8 +13,7 @@ export class KanbanGanttChartComponent implements TabComponent {
   name: string = 'Gantt Chart';
   icon: string = 'icon-gantt-chart';
   component: any = KanbanGanttChartComponent;
-  isActive: boolean = false;
-  isDisabled: boolean = false;
+  showTab: boolean = false;
   onClick?: (() => void) | undefined;
 
 }

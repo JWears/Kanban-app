@@ -1,7 +1,8 @@
 <div class="kanban-project-container">
   <div class="project-title">
-    <h1>Project Title</h1>
+    <h1>Users projects:</h1>
   </div>
+  <app-kanban-project-list></app-kanban-project-list>
   <div class="project-tabs">
     <div class="project-tab" *ngFor="let tab of tabList; let i = index" (click)="changeTab(tab)">
       <h2>{{ tab.id }} {{ i }}</h2>

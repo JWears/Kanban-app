@@ -13,8 +13,7 @@ export class KanbanAnalyticsBoardComponent implements TabComponent {
   name: string = 'Analytics Board';
   icon: string = 'icon-analytics-board';
   component: any = KanbanAnalyticsBoardComponent;
-  isActive: boolean = false;
-  isDisabled: boolean = false;
+  showTab: boolean= false;
   onClick?: (() => void) | undefined;
 
 }
