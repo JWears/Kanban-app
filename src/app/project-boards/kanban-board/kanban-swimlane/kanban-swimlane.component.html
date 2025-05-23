@@ -1,8 +1,9 @@
 <div class="swimlane-container">
   <div class="swimlane-title">
-    <h2>Title</h2>
+    <h2>{{swimlaneComponent.swimlaneTitle}}</h2>
+    <h2>{{swimlaneComponent.swimlaneId}}</h2>
   </div>
   <button (click)="createTicket()">Create new ticket</button>
   <div class="swimlane-tickets">
-    <app-kanban-story-ticket *ngFor="let item of storyTicketList2" [swimlaneId]="swimlaneId" [ticketComponent]="item"></app-kanban-story-ticket>
+    <app-kanban-story-ticket *ngFor="let item of storyTicketList" [swimlaneId]="swimlaneComponent.swimlaneId" [ticketComponent]="item"></app-kanban-story-ticket>
 </div>

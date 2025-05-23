@@ -13,7 +13,7 @@
   <div class="board-container">
     <h2> Board Title</h2>
     <div class="board-columns">
-      <app-kanban-swimlane *ngFor="let swimlane of swimlaneList" [storyTicketList]="[]"></app-kanban-swimlane>
+      <app-kanban-swimlane *ngFor="let swimlane of swimlaneList" [swimlaneComponent]="swimlane" [storyTicketList]="storyTicketList"></app-kanban-swimlane>
     </div>
   </div>
 </div>

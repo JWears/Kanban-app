@@ -1,4 +1,4 @@
-<div class="ticket-container">
+<div *ngIf="swimlaneId === ticketComponent?.ticketRegisteredSwimlaneId" class="ticket-container">
   <input type="text" name="ticket-title" [placeholder]="ticketComponent?.ticketTitle ?? 'Enter your title'">
   <input type="text" name="ticket-description" [placeholder]="ticketComponent?.ticketDescription ?? 'Enter your description' ">
   <input type="number" name="ticket-points" [placeholder]="ticketComponent?.storyPoint ?? 'Enter your story points'">
