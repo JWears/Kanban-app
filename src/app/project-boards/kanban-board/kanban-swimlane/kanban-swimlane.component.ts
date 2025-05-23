@@ -12,8 +12,23 @@ import { CommonModule } from '@angular/common';
 export class KanbanSwimlaneComponent {
   public swimlaneTitle: string = "Title";
   public swimlaneId: number = 0;
+  private mockTicketData = [
+    {
+      ticketTitle: "Title1",
+      ticketId: 101,
+    } as KanbanStoryTicketComponent,
+    {
+      ticketTitle: "Title2",
+      ticketId: 102,
+    } as KanbanStoryTicketComponent,
+    {
+      ticketTitle: "Title3",
+      ticketId: 103,
+    } as KanbanStoryTicketComponent
+  ];
 
-  @Input() storyTicketList: KanbanStoryTicketComponent[] = [ new KanbanStoryTicketComponent(), new KanbanStoryTicketComponent(), new KanbanStoryTicketComponent() ];
+  @Input() storyTicketList: KanbanStoryTicketComponent[] = this.mockTicketData;
+  storyTicketList2: KanbanStoryTicketComponent[] = this.mockTicketData;
 
   createTicket(){
     // what do we need for this

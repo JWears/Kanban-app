@@ -12,14 +12,14 @@ import { KanbanSwimlaneComponent } from './kanban-swimlane/kanban-swimlane.compo
 export class KanbanBoardComponent implements TabComponent {
   constructor() {
   }
-  showTab: boolean = false;
+  showTab: boolean = true;
   id: string = 'kanban-board';
   name: string = 'Kanban Board';
   icon: string = 'icon-kanban-board';
   component: any = KanbanBoardComponent;
   isActive: boolean = false;
   isDisabled: boolean = false;
-  swimlaneList: KanbanSwimlaneComponent[] = [ new KanbanSwimlaneComponent(), new KanbanSwimlaneComponent(), new KanbanSwimlaneComponent() ];
+  swimlaneList: KanbanSwimlaneComponent[] = [ new KanbanSwimlaneComponent(), new KanbanSwimlaneComponent(), new KanbanSwimlaneComponent(), new KanbanSwimlaneComponent(), new KanbanSwimlaneComponent() ];
 
   public onClick(): void{
     // call data for board to load

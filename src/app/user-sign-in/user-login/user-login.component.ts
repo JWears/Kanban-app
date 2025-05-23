@@ -17,7 +17,7 @@ export class UserLoginComponent {
   }
 
   toBoard(){
-    this.router.navigate(['/board']);
+    this.router.navigate(['/kanban-board']);
   }
 
 }

@@ -1,10 +1,19 @@
-<div *ngIf="showTab else kanbanBoardButton" class="kanban-board-container">
-  <div class="board-columns">
-    <app-kanban-swimlane *ngFor="let swimlane of swimlaneList" [storyTicketList]="[]"></app-kanban-swimlane>
-  </div>
-</div>
-
-<ng-template #kanbanBoardButton>
+<div class="kanban-tab-component">
+  <button (click)="onClick()">Project menu</button>
+  <p> {{icon}}</p>
   <button (click)="onClick()">Kanban board</button>
   <p> {{icon}}</p>
-</ng-template>
+  <button (click)="onClick()">Kanban analytics</button>
+  <p> {{icon}}</p>
+  <button (click)="onClick()">Kanban gantt chart</button>
+  <p> {{icon}}</p>
+</div>
+
+<div *ngIf="showTab" class="kanban-board-container">
+  <div class="board-container">
+    <h2> Board Title</h2>
+    <div class="board-columns">
+      <app-kanban-swimlane *ngFor="let swimlane of swimlaneList" [storyTicketList]="[]"></app-kanban-swimlane>
+    </div>
+  </div>
+</div>
