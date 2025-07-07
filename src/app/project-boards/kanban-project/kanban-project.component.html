@@ -4,8 +4,8 @@
   </div>
   <app-kanban-project-list></app-kanban-project-list>
   <div class="project-tabs">
-    <div class="project-tab" *ngFor="let tab of tabList; let i = index" (click)="changeTab(tab)">
-      <h2>{{ tab.id }} {{ i }}</h2>
+    <div class="project-tab" *ngFor="let project of projectList; let i = index" (click)="changeProject(project)">
+      <h2> ProjectId: {{ project.ProjectId }} Order:{{ i + 1 }}</h2>
     </div>
   </div>
 </div>

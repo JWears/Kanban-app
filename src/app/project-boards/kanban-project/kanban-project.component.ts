@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TabComponent } from '../project-types/tab-component.type';
 import { CommonModule } from '@angular/common';
-import { KanbanBoardComponent } from '../kanban-board/kanban-board.component';
-import { KanbanGanttChartComponent } from '../kanban-gantt-chart/kanban-gantt-chart.component';
-import { KanbanAnalyticsBoardComponent } from '../kanban-analytics-board/kanban-analytics-board.component';
 import { KanbanBoardHttpService } from '../../services/kanban-board.service';
 import { Project } from '../project-types/project.type';
 import { KanbanProjectListComponent } from '../kanban-project-list/kanban-project-list.component';
@@ -22,29 +18,32 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class KanbanProjectComponent implements OnInit {
   public projectId: string = ""; // where does projectId come from? retrieve list from userId?
-  public projectList: Project[] = []; // TODO: split list into a seperate component
+  public projectList: Project[] = [
+    { ProjectId: "1", ProjectName: "Website Redesign" },
+    { ProjectId: "2", ProjectName: "Mobile App Development" },
+    { ProjectId: "3", ProjectName: "Q4 Marketing Campaign" },
+    { ProjectId: "4", ProjectName: "HR Recruitment Process" },
+    { ProjectId: "5", ProjectName: "Product Roadmap 2024" },
+    { ProjectId: "6", ProjectName: "Customer Support Portal" }
+  ]; // TODO: split list into a separate component
 
   constructor(private readonly _kanbanHttpService: KanbanBoardHttpService) {
   }
   ngOnInit(): void {
   }
-  tabList: TabComponent[] = [ new KanbanBoardComponent(), new KanbanGanttChartComponent(), new KanbanAnalyticsBoardComponent() ];
 
-  changeTab(tabComponent: TabComponent) {
-
-  }
-
-  getProjects(){
-    // get list of projects from userId
-    return [];
-  }
-
-  OnProject(projectId: string){
-    this.projectId = projectId;
+  changeProject(selectedProject: Project) {
+    // change route to this registered project route
+        this.projectId = selectedProject.ProjectId;
     var userId = "";
     // how to manage passing around userId
     // not via url, via singleton user service?
     this._kanbanHttpService.GetKanbanBoard(this.projectId, userId);
     // use this data to create components
+  }
+
+  getProjects(){
+    // get list of projects from userId
+    return [];
   }
 }

@@ -1,14 +1,4 @@
-<div class="kanban-tab-component">
-  <button (click)="onClick()">Project menu</button>
-  <p> {{icon}}</p>
-  <button (click)="onClick()">Kanban board</button>
-  <p> {{icon}}</p>
-  <button (click)="onClick()">Kanban analytics</button>
-  <p> {{icon}}</p>
-  <button (click)="onClick()">Kanban gantt chart</button>
-  <p> {{icon}}</p>
-</div>
-
+<app-kanban-tabs></app-kanban-tabs>
 <div *ngIf="showTab" class="kanban-board-container">
   <div class="board-container">
     <h2> Board Title</h2>

@@ -3,10 +3,11 @@ import { TabComponent } from '../project-types/tab-component.type';
 import { CommonModule } from '@angular/common';
 import { KanbanSwimlaneComponent } from './kanban-swimlane/kanban-swimlane.component';
 import { KanbanStoryTicketComponent } from './kanban-story-ticket/kanban-story-ticket.component';
+import { KanbanTabsComponent } from '../kanban-tabs/kanban-tabs.component';
 @Component({
   selector: 'app-kanban-board',
   standalone: true,
-  imports: [KanbanSwimlaneComponent, CommonModule],
+  imports: [KanbanSwimlaneComponent, KanbanTabsComponent, CommonModule],
   templateUrl: './kanban-board.component.html',
   styleUrl: './kanban-board.component.less'
 })
