@@ -1,12 +1,17 @@
 /* Tab Component Styles */
 .kanban-tab-component {
   display: flex;
-  justify-content: center;
-  gap: 8px;
-  padding: 16px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
   background-color: #ffffff;
   border-bottom: 1px solid #e0e0e0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tab-navigation {
+  display: flex;
+  gap: 8px;
 }
 
 .tab-button {
@@ -33,16 +38,66 @@
   border-color: #1976d2;
 }
 
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.user-name {
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.user-role {
+  font-size: 12px;
+  color: #666;
+}
+
+.logout-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.logout-button:hover {
+  background-color: #d32f2f;
+}
+
 @media (max-width: 768px) {
   .kanban-tab-component {
+    flex-direction: column;
+    gap: 16px;
+    padding: 12px 16px;
+  }
+  
+  .tab-navigation {
     flex-wrap: wrap;
+    justify-content: center;
     gap: 6px;
   }
-
+  
   .tab-button {
     flex: 1;
-    min-width: 120px;
-    padding: 10px 16px;
+    min-width: 100px;
+    padding: 10px 12px;
     font-size: 12px;
+  }
+
+  .user-section {
+    justify-content: center;
   }
 }

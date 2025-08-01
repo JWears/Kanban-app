@@ -1,6 +1,89 @@
 <div class="login-container">
-  <input type="text" name="user-name" id="" placeholder="Enter your user name">
-  <input type="password" name="password" id="" placeholder="Enter your password">
-  <button (click)="onLogin()">Login</button>
-  <button (click)="toBoard()">Board</button>
+  <div class="login-card">
+    <div class="login-header">
+      <h1>Welcome Back</h1>
+      <p>Sign in to your Kanban account</p>
+    </div>
+
+    <!-- Demo Users Section -->
+    <div class="demo-users">
+      <h3>Demo Users (for testing):</h3>
+      <div class="demo-user-list">
+        <div class="demo-user">
+          <strong>john&#64;example.com</strong> - Developer
+        </div>
+        <div class="demo-user">
+          <strong>jane&#64;example.com</strong> - Project Manager
+        </div>
+        <div class="demo-user">
+          <strong>admin&#64;example.com</strong> - Admin
+        </div>
+      </div>
+      <p class="demo-note">Use any password with 6+ characters</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="login-form">
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input 
+          type="email" 
+          id="email"
+          formControlName="email"
+          class="form-input"
+          [class.error]="email?.invalid && email?.touched"
+          placeholder="Enter your email address">
+        
+        <div *ngIf="email?.invalid && email?.touched" class="error-message">
+          <span *ngIf="email?.errors?.['required']">Email is required</span>
+          <span *ngIf="email?.errors?.['email']">Please enter a valid email address</span>
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input 
+          type="password" 
+          id="password"
+          formControlName="password"
+          class="form-input"
+          [class.error]="password?.invalid && password?.touched"
+          placeholder="Enter your password">
+        
+        <div *ngIf="password?.invalid && password?.touched" class="error-message">
+          <span *ngIf="password?.errors?.['required']">Password is required</span>
+          <span *ngIf="password?.errors?.['minlength']">Password must be at least 6 characters</span>
+        </div>
+      </div>
+
+      <!-- Error Message -->
+      <div *ngIf="errorMessage" class="error-alert">
+        {{ errorMessage }}
+      </div>
+
+      <!-- Submit Button -->
+      <button 
+        type="submit" 
+        class="login-button"
+        [disabled]="loginForm.invalid || isLoading"
+        [class.loading]="isLoading">
+        <span *ngIf="!isLoading">Sign In</span>
+        <span *ngIf="isLoading">Signing In...</span>
+      </button>
+    </form>
+
+    <div class="login-footer">
+      <p>Don't have an account? 
+        <button type="button" class="link-button" (click)="goToRegister()">
+          Create Account
+        </button>
+      </p>
+      
+      <!-- Demo Button - Remove in production -->
+      <button type="button" class="demo-button" (click)="toBoard()">
+        Skip to Demo Board
+      </button>
+    </div>
+  </div>
 </div>
