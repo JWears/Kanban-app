@@ -2,10 +2,9 @@
   <div class="project-title">
     <h1>Users projects:</h1>
   </div>
-  <app-kanban-project-list></app-kanban-project-list>
   <div class="project-tabs">
     <div class="project-tab" *ngFor="let project of projectList; let i = index" (click)="changeProject(project)">
-      <h2> ProjectId: {{ project.ProjectId }} Order:{{ i + 1 }}</h2>
+      <h2> ProjectId: {{ project.ProjectId }} Order:{{ i + 1 }} Name: {{project.ProjectName}}</h2>
     </div>
   </div>
 </div>

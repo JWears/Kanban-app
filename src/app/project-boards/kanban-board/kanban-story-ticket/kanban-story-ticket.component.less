@@ -1,4 +1,144 @@
-.ticket-container{
-  display: grid;
-  background-color: greenyellow;
+/* Ticket Styles */
+.ticket-container {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.ticket-container:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-color: #2196f3;
+}
+
+.ticket-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.ticket-title {
+  margin: 0;
+  font-size: 1em;
+  font-weight: 600;
+  color: #333;
+  flex: 1;
+  margin-right: 8px;
+}
+
+.ticket-priority {
+  font-size: 0.8em;
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.priority-critical {
+  background-color: #ffebee;
+  color: #c62828;
+  border: 1px solid #ef5350;
+}
+
+.priority-high {
+  background-color: #fff3e0;
+  color: #ef6c00;
+  border: 1px solid #ff9800;
+}
+
+.priority-medium {
+  background-color: #e8f5e8;
+  color: #2e7d32;
+  border: 1px solid #4caf50;
+}
+
+.priority-low {
+  background-color: #e3f2fd;
+  color: #1565c0;
+  border: 1px solid #2196f3;
+}
+
+.ticket-description {
+  font-size: 0.9em;
+  color: #666;
+  line-height: 1.4;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ticket-meta {
+  margin-bottom: 8px;
+}
+
+.ticket-assignee, .ticket-points {
+  font-size: 0.8em;
+  margin-bottom: 4px;
+}
+
+.assignee-label, .points-label, .date-label {
+  font-weight: 500;
+  color: #555;
+}
+
+.assignee-name, .points-value, .date-value {
+  color: #777;
+  margin-left: 4px;
+}
+
+.ticket-dates {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75em;
+  color: #888;
+  margin-top: 8px;
+}
+
+.ticket-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.tag {
+  background-color: #f0f0f0;
+  color: #555;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 0.7em;
+  font-weight: 500;
+}
+
+.ticket-actions {
+  display: flex;
+  justify-content: flex-end;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.ticket-container:hover .ticket-actions {
+  opacity: 1;
+}
+
+.edit-btn {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 0.8em;
+  cursor: pointer;
+}
+
+.edit-btn:hover {
+  background-color: #1976d2;
 }

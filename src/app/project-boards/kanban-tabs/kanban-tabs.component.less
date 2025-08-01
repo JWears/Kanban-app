@@ -1,0 +1,48 @@
+/* Tab Component Styles */
+.kanban-tab-component {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tab-button {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #333;
+}
+
+.tab-button:hover {
+  background-color: #e3f2fd;
+  border-color: #2196f3;
+  color: #1976d2;
+}
+
+.tab-button:active {
+  background-color: #2196f3;
+  color: white;
+  border-color: #1976d2;
+}
+
+@media (max-width: 768px) {
+  .kanban-tab-component {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tab-button {
+    flex: 1;
+    min-width: 120px;
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+}

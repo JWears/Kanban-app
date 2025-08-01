@@ -1,9 +1,28 @@
 <app-kanban-tabs></app-kanban-tabs>
+
 <div *ngIf="showTab" class="kanban-board-container">
-  <div class="board-container">
-    <h2> Board Title</h2>
+  <div *ngIf="isLoading" class="loading-container">
+    <p>Loading board...</p>
+  </div>
+
+  <div *ngIf="error" class="error-container">
+    <p class="error-message">{{ error }}</p>
+    <button (click)="loadBoard()" class="retry-button">Retry</button>
+  </div>
+
+  <div *ngIf="!isLoading && !error && board" class="board-container">
+    <div class="board-header">
+      <h1 class="board-title">{{ board.title }}</h1>
+      <p *ngIf="board.description" class="board-description">{{ board.description }}</p>
+    </div>
+
     <div class="board-columns">
-      <app-kanban-swimlane *ngFor="let swimlane of swimlaneList" [swimlaneComponent]="swimlane" [storyTicketList]="storyTicketList"></app-kanban-swimlane>
+      <app-kanban-swimlane
+        *ngFor="let swimlane of swimlanes"
+        [swimlane]="swimlane"
+        (ticketCreated)="onTicketCreated()"
+        (ticketMoved)="onTicketMoved()">
+      </app-kanban-swimlane>
     </div>
   </div>
 </div>

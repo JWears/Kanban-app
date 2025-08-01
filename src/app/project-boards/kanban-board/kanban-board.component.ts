@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TabComponent } from '../project-types/tab-component.type';
 import { CommonModule } from '@angular/common';
 import { KanbanSwimlaneComponent } from './kanban-swimlane/kanban-swimlane.component';
-import { KanbanStoryTicketComponent } from './kanban-story-ticket/kanban-story-ticket.component';
 import { KanbanTabsComponent } from '../kanban-tabs/kanban-tabs.component';
+import { KanbanBoardService } from '../../services/kanban-board.service';
+import { KanbanBoard, KanbanSwimlane } from '../project-types/kanban.types';
+
 @Component({
   selector: 'app-kanban-board',
   standalone: true,
@@ -11,9 +13,10 @@ import { KanbanTabsComponent } from '../kanban-tabs/kanban-tabs.component';
   templateUrl: './kanban-board.component.html',
   styleUrl: './kanban-board.component.less'
 })
-export class KanbanBoardComponent implements TabComponent {
-  constructor() {
-  }
+export class KanbanBoardComponent implements TabComponent, OnInit {
+
+  constructor(private kanbanBoardService: KanbanBoardService) {}
+
   showTab: boolean = true;
   id: string = 'kanban-board';
   name: string = 'Kanban Board';
@@ -22,46 +25,49 @@ export class KanbanBoardComponent implements TabComponent {
   isActive: boolean = false;
   isDisabled: boolean = false;
 
-  private mockTicketData = [
-      {
-        ticketTitle: "Title1",
-        ticketId: 101,
-        ticketRegisteredSwimlaneId: 101,
-      } as KanbanStoryTicketComponent,
-      {
-        ticketTitle: "Title2",
-        ticketId: 102,
-        ticketRegisteredSwimlaneId: 101,
-      } as KanbanStoryTicketComponent,
-      {
-        ticketTitle: "Title3",
-        ticketId: 103,
-        ticketRegisteredSwimlaneId: 102,
-      } as KanbanStoryTicketComponent
-    ];
+  board: KanbanBoard | null = null;
+  swimlanes: KanbanSwimlane[] = [];
+  isLoading: boolean = true;
+  error: string | null = null;
 
-  mockSwimlaneData = [
-    {
-      swimlaneTitle: "Title1",
-      swimlaneId: 101,
-    } as KanbanSwimlaneComponent,
-    {
-      swimlaneTitle: "Title2",
-      swimlaneId: 102,
-    } as KanbanSwimlaneComponent,
-    {
-      swimlaneTitle: "Title3",
-      swimlaneId: 103,
-    } as KanbanSwimlaneComponent,
-  ];
-  swimlaneList: KanbanSwimlaneComponent[] = this.mockSwimlaneData;
-  storyTicketList: KanbanStoryTicketComponent[] = this.mockTicketData;
+  ngOnInit(): void {
+    this.loadBoardData();
+  }
 
-  public onClick(): void{
-    // call data for board to load
-      // what information would be provided? id, board name, list of swimlanes? list of tickets? // list of board users
-    // change url
-    // cache data to prevent calls
-  };
+  private loadBoardData(): void {
+    this.isLoading = true;
+    this.error = null;
 
+    // TODO: Get actual project and board IDs from route params or service
+    this.kanbanBoardService.getKanbanBoard('project-1', 'board-1').subscribe({
+      next: (board) => {
+        this.board = board;
+        this.swimlanes = board.swimlanes;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        this.error = 'Failed to load board data';
+        this.isLoading = false;
+        console.error('Error loading board:', err);
+      }
+    });
+  }
+
+  public loadBoard(): void {
+    this.loadBoardData();
+  }
+
+  public onTicketCreated(): void {
+    // Refresh the board when a new ticket is created
+    this.loadBoardData();
+  }
+
+  public onTicketMoved(): void {
+    // Refresh the board when a ticket is moved
+    this.loadBoardData();
+  }
+
+  public onClick(): void {
+    // Legacy method - could be used for board-level actions
+  }
 }

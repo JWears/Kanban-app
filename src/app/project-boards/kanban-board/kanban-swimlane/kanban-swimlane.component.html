@@ -1,9 +1,51 @@
-<div class="swimlane-container">
-  <div class="swimlane-title">
-    <h2>{{swimlaneComponent.swimlaneTitle}}</h2>
-    <h2>{{swimlaneComponent.swimlaneId}}</h2>
+<div class="swimlane-container" [style.background-color]="swimlane.color">
+  <div class="swimlane-header">
+    <h3 class="swimlane-title">{{ swimlane.title }}</h3>
+    <span class="ticket-count">({{ swimlane.tickets.length }})</span>
+    <button (click)="createTicket()" class="add-ticket-btn" [disabled]="showCreateForm">+ Add Ticket</button>
   </div>
-  <button (click)="createTicket()">Create new ticket</button>
+
+  <!-- Create New Ticket Form -->
+  <div *ngIf="showCreateForm" class="create-ticket-form">
+    <input
+      type="text"
+      [(ngModel)]="newTicket.title"
+      placeholder="Ticket title"
+      class="form-input"
+      aria-label="Ticket title">
+    <textarea
+      [(ngModel)]="newTicket.description"
+      placeholder="Description"
+      class="form-textarea"
+      aria-label="Ticket description"></textarea>
+    <select
+      [(ngModel)]="newTicket.priority"
+      class="form-select"
+      title="Select priority"
+      aria-label="Ticket priority">
+      <option value="Low">Low</option>
+      <option value="Medium">Medium</option>
+      <option value="High">High</option>
+      <option value="Critical">Critical</option>
+    </select>
+    <input
+      type="text"
+      [(ngModel)]="newTicket.assignee"
+      placeholder="Assignee"
+      class="form-input"
+      aria-label="Assignee name">
+    <div class="form-actions">
+      <button (click)="saveTicket()" class="save-btn">Save</button>
+      <button (click)="cancelCreate()" class="cancel-btn">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Tickets List -->
   <div class="swimlane-tickets">
-    <app-kanban-story-ticket *ngFor="let item of storyTicketList" [swimlaneId]="swimlaneComponent.swimlaneId" [ticketComponent]="item"></app-kanban-story-ticket>
+    <app-kanban-story-ticket
+      *ngFor="let ticket of swimlane.tickets"
+      [ticket]="ticket"
+      (ticketUpdated)="onTicketUpdated()">
+    </app-kanban-story-ticket>
+  </div>
 </div>

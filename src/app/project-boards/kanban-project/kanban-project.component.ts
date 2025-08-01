@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { KanbanBoardHttpService } from '../../services/kanban-board.service';
+import { KanbanBoardService } from '../../services/kanban-board.service';
 import { Project } from '../project-types/project.type';
 import { KanbanProjectListComponent } from '../kanban-project-list/kanban-project-list.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -12,7 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     KanbanProjectListComponent,
     HttpClientModule],
-  providers: [KanbanBoardHttpService],
+  providers: [KanbanBoardService],
   templateUrl: './kanban-project.component.html',
   styleUrl: './kanban-project.component.less'
 })
@@ -27,7 +27,7 @@ export class KanbanProjectComponent implements OnInit {
     { ProjectId: "6", ProjectName: "Customer Support Portal" }
   ]; // TODO: split list into a separate component
 
-  constructor(private readonly _kanbanHttpService: KanbanBoardHttpService) {
+  constructor(private readonly _kanbanHttpService: KanbanBoardService) {
   }
   ngOnInit(): void {
   }
@@ -38,7 +38,7 @@ export class KanbanProjectComponent implements OnInit {
     var userId = "";
     // how to manage passing around userId
     // not via url, via singleton user service?
-    this._kanbanHttpService.GetKanbanBoard(this.projectId, userId);
+    this._kanbanHttpService.getKanbanBoard(this.projectId, userId);
     // use this data to create components
   }
 

@@ -1,29 +1,61 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { KanbanStoryTicketComponent } from '../kanban-story-ticket/kanban-story-ticket.component';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { KanbanSwimlane, KanbanTicket } from '../../project-types/kanban.types';
+import { KanbanBoardService } from '../../../services/kanban-board.service';
 
 @Component({
   selector: 'app-kanban-swimlane',
   standalone: true,
-  imports: [KanbanStoryTicketComponent, CommonModule],
+  imports: [KanbanStoryTicketComponent, CommonModule, FormsModule],
   templateUrl: './kanban-swimlane.component.html',
   styleUrl: './kanban-swimlane.component.less'
 })
 export class KanbanSwimlaneComponent {
-  public swimlaneTitle: string = "Title";
-  public swimlaneId: number = 0;
+  @Input() swimlane!: KanbanSwimlane;
+  @Output() ticketCreated = new EventEmitter<void>();
+  @Output() ticketMoved = new EventEmitter<void>();
 
-  @Input() storyTicketList: KanbanStoryTicketComponent[] = [];
-  @Input() swimlaneComponent: KanbanSwimlaneComponent = {} as KanbanSwimlaneComponent;
+  showCreateForm: boolean = false;
+  newTicket: Partial<KanbanTicket> = {};
 
-  createTicket(){
-    // what do we need for this
-    // a http service to make a Create request
-    // board id so ticket is assigned a parent automatically
-    // a swimlane id so that it creates ticket in current swimlane
-    // all ticket information
-      // should I bring the user to the ticket UI similar to ADO
-      // how would this be done
-      // create a ticket then change url to the tickets Id
+  constructor(private kanbanBoardService: KanbanBoardService) {}
+
+  createTicket(): void {
+    this.showCreateForm = true;
+    this.newTicket = {
+      title: '',
+      description: '',
+      priority: 'Medium',
+      assignee: '',
+      swimlaneId: this.swimlane.id,
+      status: this.swimlane.title
+    };
+  }
+
+  saveTicket(): void {
+    if (this.newTicket.title && this.newTicket.description) {
+      this.kanbanBoardService.createTicket(this.newTicket as Omit<KanbanTicket, 'id' | 'createdAt' | 'updatedAt'>)
+        .subscribe({
+          next: (ticket) => {
+            this.swimlane.tickets.push(ticket);
+            this.ticketCreated.emit();
+            this.cancelCreate();
+          },
+          error: (err) => {
+            console.error('Error creating ticket:', err);
+          }
+        });
+    }
+  }
+
+  cancelCreate(): void {
+    this.showCreateForm = false;
+    this.newTicket = {};
+  }
+
+  onTicketUpdated(): void {
+    this.ticketMoved.emit();
   }
 }
